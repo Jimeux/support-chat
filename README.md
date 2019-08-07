@@ -1,5 +1,5 @@
 ## support-chat
-A simple chat demo using [pusher](https://pusher.com/), Vue and Go.
+A simple chat app demo using [Pusher](https://pusher.com/), Vue and Go.
 
 <p align="center">
     <img src="screenshot.png" alt="Screenshot"/>

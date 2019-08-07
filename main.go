@@ -125,7 +125,7 @@ func sendAuthRequest(channelName string, params []byte, user *User) ([]byte, err
 	case strings.HasPrefix(channelName, PrivateChannelPrefix):
 		isOwnChannel := strings.Split(channelName, "-")[1] == fmt.Sprintf("%d", user.ID)
 		if !isOwnChannel && !user.IsAdmin {
-			return nil, errors.New("cannot authorised to join this channel")
+			return nil, errors.New("not authorised to join this channel")
 		}
 		return client.AuthenticatePrivateChannel(params)
 	}
