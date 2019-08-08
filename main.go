@@ -13,9 +13,8 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
-	"golang.org/x/xerrors"
-
 	"github.com/pusher/pusher-http-go"
+	"golang.org/x/xerrors"
 )
 
 var (

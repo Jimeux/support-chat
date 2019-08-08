@@ -1,5 +1,5 @@
-import {UserWindow} from "./UserWindow.js"
-import {AdminWindow} from "./AdminWindow.js"
+import {UserWindow} from "./components/UserWindow.js"
+import {AdminWindow} from "./components/AdminWindow.js"
 
 const app = new Vue({
   el: '#app',

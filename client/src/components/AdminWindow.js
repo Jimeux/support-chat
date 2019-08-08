@@ -1,30 +1,13 @@
 import {MessageItem} from "./MessageItem.js"
 import {UserItem} from "./UserItem.js"
-import {AdminPusherClient} from "./AdminPusherClient.js"
-import {APIClient} from "./APIClient.js"
+import {AdminPusherClient} from "../AdminPusherClient.js"
+import {APIClient} from "../APIClient.js"
 
 export const AdminWindow = {
   props: [
     'name',
     'sessionToken'
   ],
-  template: `
-    <div>
-      <span>
-        <strong>{{ name }}</strong> &nbsp;<button @click="toggleConnection">{{connected ? 'Leave' : 'Join'}}</button>
-      </span>
-      <ul style="list-style: none;padding: 0">
-        <user-item class="user-item"
-                      v-for="(item, index) in users"
-                      :key="index"
-                      :user="item"
-                      :toggleConnection="toggleUserConnection"
-                      :sendMessage="sendResponse"
-                      :startTyping="startTyping"
-        ></user-item>
-      </ul>
-    </div>
-  `,
   components: {
     'user-item': UserItem,
     'message-item': MessageItem,
@@ -102,5 +85,21 @@ export const AdminWindow = {
         user.beingTyped = false
       }, 1000)
     }
-  }
+  },
+  template: `
+    <div>
+      <span>
+        <strong>{{ name }}</strong> &nbsp;<button @click="toggleConnection">{{connected ? 'Leave' : 'Join'}}</button>
+      </span>
+      <ul style="list-style: none;padding: 0">
+        <user-item class="user-item"
+                      v-for="(item, index) in users"
+                      :key="index"
+                      :user="item"
+                      :toggleConnection="toggleUserConnection"
+                      :sendMessage="sendResponse"
+                      :startTyping="startTyping"
+        ></user-item>
+      </ul>
+    </div>`
 }
