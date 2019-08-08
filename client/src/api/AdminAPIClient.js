@@ -1,4 +1,5 @@
-export class APIClient {
+export class AdminAPIClient {
+
   constructor(sessionToken) {
     this.sessionToken = sessionToken
   }
@@ -9,20 +10,6 @@ export class APIClient {
       user_id: parseInt(userId),
       text: text
     }
-
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-        'Session-Token': this.sessionToken
-      }
-    }).catch(error => console.error('Error:', error))
-  }
-
-  sendMessage(text) {
-    const url = '/message'
-    const data = {text}
 
     fetch(url, {
       method: 'POST',

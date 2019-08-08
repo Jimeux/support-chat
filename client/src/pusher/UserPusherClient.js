@@ -1,8 +1,10 @@
-export class UserPusherClient {
+import {PusherClient} from "./PusherClient.js"
+
+export class UserPusherClient extends PusherClient {
 
   constructor(userId, sessionToken) {
+    super(sessionToken)
     this.userId = userId
-    this.sessionToken = sessionToken
     this.myChannel = null
     this.roomChannel = null
   }
@@ -10,16 +12,7 @@ export class UserPusherClient {
   connect(onConnect, onReceiveMessage, onOperatorTyping) {
     if (this.pusher != null)
       return
-
-    this.pusher = new Pusher('655a7bd7ad1d119d0d4d', {
-      auth: {
-        headers: {
-          'Session-Token': this.sessionToken
-        }
-      },
-      cluster: 'ap3',
-      forceTLS: true
-    })
+    super.connect()
 
     this.roomChannel = this.pusher.subscribe('presence-channel')
     this.roomChannel.bind('pusher:subscription_succeeded', onConnect)

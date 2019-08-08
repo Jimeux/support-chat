@@ -1,11 +1,11 @@
-import {UserWindow} from "./components/UserWindow.js"
-import {AdminWindow} from "./components/AdminWindow.js"
+import {UserPane} from "./components/UserPane.js"
+import {AdminPane} from "./components/AdminPane.js"
 
 const app = new Vue({
   el: '#app',
   components: {
-    'admin-window': AdminWindow,
-    'user-window': UserWindow
+    'admin-window': AdminPane,
+    'user-window': UserPane
   },
   template: `
     <div>

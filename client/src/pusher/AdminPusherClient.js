@@ -1,23 +1,16 @@
-export class AdminPusherClient {
+import {PusherClient} from "./PusherClient.js"
+
+export class AdminPusherClient extends PusherClient {
 
   constructor(sessionToken) {
-    this.sessionToken = sessionToken
+    super(sessionToken)
     this.subscribedUserChannels = new Map()
   }
 
   connect(onConnect, onJoin, onLeave) {
     if (this.pusher != null)
       return
-
-    this.pusher = new Pusher('655a7bd7ad1d119d0d4d', {
-      auth: {
-        headers: {
-          'Session-Token': this.sessionToken
-        }
-      },
-      cluster: 'ap3',
-      forceTLS: true
-    })
+    super.connect()
 
     const channel = this.pusher.subscribe('presence-channel')
     channel.bind('pusher:subscription_succeeded', members => {

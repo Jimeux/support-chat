@@ -1,21 +1,19 @@
-import {MessageItem} from "./MessageItem.js"
 import {UserItem} from "./UserItem.js"
-import {AdminPusherClient} from "../AdminPusherClient.js"
-import {APIClient} from "../APIClient.js"
+import {AdminPusherClient} from "../pusher/AdminPusherClient.js"
+import {AdminAPIClient} from "../api/AdminAPIClient.js"
 
-export const AdminWindow = {
+export const AdminPane = {
   props: [
     'name',
     'sessionToken'
   ],
   components: {
     'user-item': UserItem,
-    'message-item': MessageItem,
   },
   data() {
     return {
       connected: false,
-      apiClient: new APIClient(this.sessionToken),
+      apiClient: new AdminAPIClient(this.sessionToken),
       pusher: new AdminPusherClient(this.sessionToken),
       users: []
     }
@@ -88,17 +86,15 @@ export const AdminWindow = {
   },
   template: `
     <div>
-      <span>
-        <strong>{{ name }}</strong> &nbsp;<button @click="toggleConnection">{{connected ? 'Leave' : 'Join'}}</button>
-      </span>
+      <strong>{{ name }}</strong> &nbsp;<button @click="toggleConnection">{{connected ? 'Leave' : 'Join'}}</button>
       <ul style="list-style: none;padding: 0">
         <user-item class="user-item"
-                      v-for="(item, index) in users"
-                      :key="index"
-                      :user="item"
-                      :toggleConnection="toggleUserConnection"
-                      :sendMessage="sendResponse"
-                      :startTyping="startTyping"
+                   v-for="(item, index) in users"
+                   :key="index"
+                   :user="item"
+                   :sendMessage="sendResponse"
+                   :startTyping="startTyping"
+                   :toggleConnection="toggleUserConnection"
         ></user-item>
       </ul>
     </div>`
