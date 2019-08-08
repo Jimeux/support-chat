@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"path/filepath"
 	"strings"
 	"time"
@@ -36,8 +37,8 @@ var userMap = map[string]*User{
 func main() {
 	client = &pusher.Client{
 		AppID:      "836189",
-		Key:        "655a7bd7ad1d119d0d4d", // os.Getenv("SUPPORT_PUSHER_KEY"),
-		Secret:     "62f46113c45371d1ecdc", // os.Getenv("SUPPORT_PUSHER_SECRET"),
+		Key:        os.Getenv("SUPPORT_PUSHER_KEY"),
+		Secret:     os.Getenv("SUPPORT_PUSHER_SECRET"),
 		Cluster:    "ap3",
 		Secure:     true,
 		HTTPClient: &http.Client{Timeout: time.Second * 10},
